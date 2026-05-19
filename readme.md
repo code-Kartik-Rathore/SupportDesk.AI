@@ -12,25 +12,24 @@ SupportDesk AI features a state-of-the-art modern dark/light mode interface buil
 
 ### 🌟 Landing Page
 Beautiful custom animated mesh backgrounds with desynchronized floating gradient blobs, dynamic sparkles, and floating stars.
-![Landing Page](assets/landing.png)
-<img width="1470" height="837" alt="image" src="https://github.com/user-attachments/assets/1d8e9c93-0e3f-4c7b-a003-1fef458f70b1" />
+<img width="2940" height="1662" alt="image" src="https://github.com/user-attachments/assets/4776698e-a917-41a1-8205-7cceff0ed6f6" />
+
 
 
 ### 🔒 Login & Authorization
 Clean secure authentication layout featuring dual quick-access demo log-in options.
-![Login Page](assets/login.png)
+<img width="2940" height="1670" alt="image" src="https://github.com/user-attachments/assets/654c7cea-e053-46f2-9520-a152bee0adac" />
 
-### 💻 Moderator Dashboard
-A sleek workspace showing only the tickets automatically routed and assigned to that specific moderator based on their skills.
-![Dashboard](assets/dashboard_moderator.png)
 
 ### 🎫 AI Ticket Insights & Resolution Form
 Detailed ticket page showcasing required skills identified by the AI, helpful notes generated automatically, and an interactive resolution interface for assigned moderators.
-![Ticket Details](assets/ticket_details.png)
+<img width="2940" height="1658" alt="image" src="https://github.com/user-attachments/assets/135e66f0-c75a-4a09-a2fa-a03a8be63020" />
+
 
 ### 🛠️ Admin Control Panel
 A unified control center for administrators to manage users, update skills, assign roles (Admin/Moderator/User), or permanently delete members with secure browser prompts.
-![Admin Panel](assets/admin_panel.png)
+<img width="1470" height="828" alt="image" src="https://github.com/user-attachments/assets/6cad3369-6626-48b9-899a-e29864f39078" />
+
 
 ---
 
