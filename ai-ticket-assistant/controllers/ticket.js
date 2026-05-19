@@ -17,23 +17,33 @@ export const createTicket = async (req, res) => {
       createdBy: req.user._id.toString(),
     });
 
-    await inngest.send({
-      name: "ticket/created",
-      data: {
-        ticketId: ( newTicket)._id.toString(),
-        title,
-        description,
-        createdBy: req.user._id.toString(),
-      },
-    });
-    console.log("📨 Event sent to Inngest:", newTicket._id);
+    // Fire inngest event (don't fail ticket creation if Inngest is down)
+    try {
+      await inngest.send({
+        name: "ticket/created",
+        data: {
+          ticketId: (newTicket)._id.toString(),
+          title,
+          description,
+          createdBy: req.user._id.toString(),
+        },
+      });
+      console.log("📨 Event sent to Inngest successfully:", newTicket._id);
+    } catch (inngestError) {
+      console.warn("⚠️ Inngest event dispatch failed (non-critical):", inngestError.message);
+      console.warn("Make sure the Inngest Dev Server is running with: npm run inngest-dev");
+    }
+
     return res.status(201).json({
-      message: "Ticket created and processing started",
+      message: "Ticket created successfully",
       ticket: newTicket,
     });
   } catch (error) {
-    console.error("Error creating ticket", error.message);
-    return res.status(500).json({ message: "Internal Server Error" });
+    console.error("❌ Error creating ticket (Full Stack Trace):", error);
+    return res.status(500).json({ 
+      message: "Internal Server Error", 
+      error: error.message 
+    });
   }
 };
 

@@ -30,7 +30,8 @@ export default function LoginPage() {
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/");
       } else {
-        alert(data.message || "Login failed");
+        alert(data.error || data.message || "Login failed");
+        console.log(res);
       }
     } catch (err) {
       alert("Something went wrong");
@@ -65,7 +66,7 @@ export default function LoginPage() {
         <Link to="/" className="absolute top-8 left-8 lg:hidden inline-flex items-center gap-2 text-base-content/70 hover:text-base-content">
           <ArrowLeft size={20} /> Home
         </Link>
-        
+
         <div className="w-full max-w-md">
           <div className="text-center lg:text-left mb-10">
             <h2 className="text-3xl font-bold mb-2">Log In</h2>
@@ -137,23 +138,23 @@ export default function LoginPage() {
 
           <div className="divider text-sm text-base-content/40 mt-8">Or try demo accounts</div>
           <div className="flex flex-col sm:flex-row gap-2">
-            <button 
+            <button
               type="button"
               className="btn btn-outline btn-sm flex-1"
               onClick={() => {
                 setForm({ email: "admin@ticketai.com", password: "password123" });
               }}
             >
-               Admin Demo
+              Admin Demo
             </button>
-            <button 
+            <button
               type="button"
               className="btn btn-outline btn-sm flex-1"
               onClick={() => {
                 setForm({ email: "mod@ticketai.com", password: "password123" });
               }}
             >
-               Moderator Demo
+              Moderator Demo
             </button>
           </div>
         </div>
