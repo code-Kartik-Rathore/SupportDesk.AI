@@ -1,0 +1,39 @@
+services:
+  # 🖥️ BACKEND WEB SERVICE
+  - type: web
+    name: supportdesk-backend
+    runtime: node
+    rootDir: ai-ticket-assistant
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+
+  # 🎨 FRONTEND STATIC SITE
+  - type: web
+    name: supportdesk-frontend
+    runtime: static
+    rootDir: ai-ticket-frontend
+    buildCommand: npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_SERVER_URL
+        fromService:
+          name: supportdesk-backend
+          type: web
+          property: host
