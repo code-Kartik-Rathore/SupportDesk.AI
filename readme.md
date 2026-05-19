@@ -13,6 +13,8 @@ SupportDesk AI features a state-of-the-art modern dark/light mode interface buil
 ### 🌟 Landing Page
 Beautiful custom animated mesh backgrounds with desynchronized floating gradient blobs, dynamic sparkles, and floating stars.
 ![Landing Page](assets/landing.png)
+<img width="1470" height="837" alt="image" src="https://github.com/user-attachments/assets/1d8e9c93-0e3f-4c7b-a003-1fef458f70b1" />
+
 
 ### 🔒 Login & Authorization
 Clean secure authentication layout featuring dual quick-access demo log-in options.
