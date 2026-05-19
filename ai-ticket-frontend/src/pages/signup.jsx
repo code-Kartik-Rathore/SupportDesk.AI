@@ -55,7 +55,7 @@ export default function SignupPage() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-sm font-medium mb-6">
             <Sparkles size={16} /> Get started in seconds
           </div>
-          <h1 className="text-5xl font-extrabold mb-6 leading-tight">Join Ticket AI today</h1>
+          <h1 className="text-5xl font-extrabold mb-6 leading-tight">Join SupportDesk AI today</h1>
           <p className="text-xl opacity-90 leading-relaxed font-light">
             Automate your IT support and customer service with our intelligent ticket management platform.
           </p>
@@ -75,7 +75,7 @@ export default function SignupPage() {
         <div className="w-full max-w-md">
           <div className="text-center lg:text-left mb-10">
             <h2 className="text-3xl font-bold mb-2">Create an account</h2>
-            <p className="text-base-content/70">Sign up to get started with Ticket AI</p>
+            <p className="text-base-content/70">Sign up to get started with SupportDesk AI</p>
           </div>
 
           <form onSubmit={handleSignup} className="space-y-6">

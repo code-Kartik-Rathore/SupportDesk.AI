@@ -23,7 +23,7 @@ export default function Navbar() {
             <TicketIcon size={20} className="text-white" />
           </div>
           <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-            Ticket AI
+            SupportDesk AI
           </span>
         </Link>
       </div>

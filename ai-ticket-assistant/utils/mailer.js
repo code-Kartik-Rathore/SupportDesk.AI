@@ -20,7 +20,7 @@ function getTransporter() {
 export const sendMail = async (to, subject, text, html) => {
   try {
     const info = await getTransporter().sendMail({
-      from: `"AI Ticket System" <${process.env.SMTP_USER}>`,
+      from: `"SupportDesk AI" <${process.env.SMTP_USER}>`,
       to,
       subject,
       text,
@@ -56,7 +56,7 @@ export const sendTicketCreatedToUser = async (userEmail, ticket) => {
         <p style="color: #6b7280; font-size: 14px;">We'll notify you once a moderator has been assigned and when your ticket is resolved.</p>
       </div>
       <div style="background: #f3f4f6; padding: 16px 32px; text-align: center;">
-        <p style="color: #9ca3af; font-size: 12px; margin: 0;">AI Ticket System • Automated Notification</p>
+        <p style="color: #9ca3af; font-size: 12px; margin: 0;">SupportDesk AI • Automated Notification</p>
       </div>
     </div>
   `;
@@ -93,7 +93,7 @@ export const sendTicketAssignedToModerator = async (moderatorEmail, ticket) => {
         <p style="color: #6b7280; font-size: 14px;">Log in to the dashboard to view and resolve this ticket.</p>
       </div>
       <div style="background: #f3f4f6; padding: 16px 32px; text-align: center;">
-        <p style="color: #9ca3af; font-size: 12px; margin: 0;">AI Ticket System • Automated Notification</p>
+        <p style="color: #9ca3af; font-size: 12px; margin: 0;">SupportDesk AI • Automated Notification</p>
       </div>
     </div>
   `;
@@ -118,7 +118,7 @@ export const sendTicketAssignedToUser = async (userEmail, ticket, moderatorEmail
         <p style="color: #6b7280; font-size: 14px;">You'll receive another email once this ticket has been resolved.</p>
       </div>
       <div style="background: #f3f4f6; padding: 16px 32px; text-align: center;">
-        <p style="color: #9ca3af; font-size: 12px; margin: 0;">AI Ticket System • Automated Notification</p>
+        <p style="color: #9ca3af; font-size: 12px; margin: 0;">SupportDesk AI • Automated Notification</p>
       </div>
     </div>
   `;
@@ -143,7 +143,7 @@ export const sendTicketResolvedToUser = async (userEmail, ticket) => {
         <p style="color: #6b7280; font-size: 14px;">If you're not satisfied with the resolution, you can create a new ticket referencing this one.</p>
       </div>
       <div style="background: #f3f4f6; padding: 16px 32px; text-align: center;">
-        <p style="color: #9ca3af; font-size: 12px; margin: 0;">AI Ticket System • Automated Notification</p>
+        <p style="color: #9ca3af; font-size: 12px; margin: 0;">SupportDesk AI • Automated Notification</p>
       </div>
     </div>
   `;
@@ -168,7 +168,7 @@ export const sendTicketResolvedToModerator = async (moderatorEmail, ticket) => {
         <p style="color: #6b7280; font-size: 14px;">Thank you for resolving this ticket. The user has been notified.</p>
       </div>
       <div style="background: #f3f4f6; padding: 16px 32px; text-align: center;">
-        <p style="color: #9ca3af; font-size: 12px; margin: 0;">AI Ticket System • Automated Notification</p>
+        <p style="color: #9ca3af; font-size: 12px; margin: 0;">SupportDesk AI • Automated Notification</p>
       </div>
     </div>
   `;

@@ -49,7 +49,7 @@ export default function LoginPage() {
           <Link to="/" className="inline-flex items-center gap-2 mb-12 hover:opacity-80 transition-opacity">
             <ArrowLeft size={20} /> Back to Home
           </Link>
-          <h1 className="text-5xl font-extrabold mb-6 leading-tight">Welcome back to Ticket AI</h1>
+          <h1 className="text-5xl font-extrabold mb-6 leading-tight">Welcome back to SupportDesk AI</h1>
           <p className="text-xl opacity-90 leading-relaxed font-light">
             Log in to manage your tickets, track resolutions, and collaborate with your team efficiently.
           </p>
