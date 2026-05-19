@@ -50,7 +50,7 @@ export default function Tickets() {
         setForm({ title: "", description: "" });
         fetchTickets(); // Refresh list
       } else {
-        alert(data.message || "Ticket creation failed");
+        alert(data.error || data.message || "Ticket creation failed");
       }
     } catch (err) {
       alert("Error creating ticket");
