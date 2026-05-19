@@ -1,5 +1,7 @@
 import { inngest } from "../inngest/client.js";
 import Ticket from "../models/ticket.js";
+import User from "../models/user.js";
+import { sendTicketResolvedToUser, sendTicketResolvedToModerator } from "../utils/mailer.js";
 
 export const createTicket = async (req, res) => {
   try {
@@ -39,8 +41,12 @@ export const getTickets = async (req, res) => {
   try {
     const user = req.user;
     let tickets = [];
-    if (user.role !== "user") {
+    if (user.role === "admin") {
       tickets = await Ticket.find({})
+        .populate("assignedTo", ["email", "_id"])
+        .sort({ createdAt: -1 });
+    } else if (user.role === "moderator") {
+      tickets = await Ticket.find({ assignedTo: user._id })
         .populate("assignedTo", ["email", "_id"])
         .sort({ createdAt: -1 });
     } else {
@@ -60,11 +66,16 @@ export const getTicket = async (req, res) => {
     const user = req.user;
     let ticket;
 
-    if (user.role !== "user") {
+    if (user.role === "admin") {
       ticket = await Ticket.findById(req.params.id).populate("assignedTo", [
         "email",
         "_id",
       ]);
+    } else if (user.role === "moderator") {
+      ticket = await Ticket.findOne({
+        assignedTo: user._id,
+        _id: req.params.id,
+      }).populate("assignedTo", ["email", "_id"]);
     } else {
       ticket = await Ticket.findOne({
         createdBy: user._id,
@@ -78,6 +89,61 @@ export const getTicket = async (req, res) => {
     return res.status(200).json({ ticket });
   } catch (error) {
     console.error("Error fetching ticket", error.message);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const resolveTicket = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { resolution } = req.body;
+    const user = req.user;
+
+    if (!resolution) {
+      return res.status(400).json({ message: "Resolution text is required" });
+    }
+
+    const ticket = await Ticket.findById(id);
+
+    if (!ticket) {
+      return res.status(404).json({ message: "Ticket not found" });
+    }
+
+    // Check if user is the assigned moderator or admin
+    const isAssignedModerator = ticket.assignedTo && ticket.assignedTo.toString() === user._id.toString();
+    const isAdmin = user.role === "admin";
+
+    if (!isAssignedModerator && !isAdmin) {
+      return res.status(403).json({ message: "You are not authorized to resolve this ticket" });
+    }
+
+    ticket.status = "RESOLVED";
+    ticket.resolution = resolution;
+    ticket.resolvedAt = new Date();
+    await ticket.save();
+
+    // Send resolution emails (non-blocking)
+    try {
+      // Email the ticket creator
+      const creator = await User.findById(ticket.createdBy);
+      if (creator) {
+        console.log(`📧 Sending resolution email to ticket creator: ${creator.email}`);
+        await sendTicketResolvedToUser(creator.email, ticket);
+      }
+
+      // Email the assigned moderator (confirmation)
+      const moderator = await User.findById(ticket.assignedTo);
+      if (moderator) {
+        console.log(`📧 Sending resolution confirmation to moderator: ${moderator.email}`);
+        await sendTicketResolvedToModerator(moderator.email, ticket);
+      }
+    } catch (emailErr) {
+      console.error("⚠️ Email sending failed (non-critical):", emailErr.message);
+    }
+
+    return res.status(200).json({ message: "Ticket resolved successfully", ticket });
+  } catch (error) {
+    console.error("Error resolving ticket", error.message);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };

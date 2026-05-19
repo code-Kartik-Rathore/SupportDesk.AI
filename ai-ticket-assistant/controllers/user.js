@@ -127,3 +127,25 @@ export const getUsers = async (req, res) => {
     res.status(500).json({ error: "Update failed", details: error.message });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    if (req.user.role !== "admin") {
+      return res.status(403).json({ error: "Forbidden" });
+    }
+
+    const { id } = req.params;
+    
+    // Prevent deleting self
+    if (id === req.user._id.toString()) {
+      return res.status(400).json({ error: "You cannot delete yourself" });
+    }
+
+    const user = await User.findByIdAndDelete(id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    return res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Delete failed", details: error.message });
+  }
+};

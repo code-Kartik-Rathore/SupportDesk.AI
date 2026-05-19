@@ -10,6 +10,7 @@ import Login from "./pages/login.jsx";
 import Signup from "./pages/signup.jsx";
 import Admin from "./pages/admin.jsx";
 import Navbar from "./components/navbar.jsx";
+import Home from "./pages/Home.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -27,6 +28,10 @@ createRoot(document.getElementById("root")).render(
         /> */}
         <Route
           path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/tickets"
           element={
             <CheckAuth protectedRoute={true}>
               <Tickets />
@@ -42,7 +47,7 @@ createRoot(document.getElementById("root")).render(
           }
         />
         <Route
-          path="api/login"
+          path="/login"
           element={
             <CheckAuth protectedRoute={false}>
               <Login />
@@ -50,7 +55,7 @@ createRoot(document.getElementById("root")).render(
           }
         />
         <Route
-          path="api/signup"
+          path="/signup"
           element={
             <CheckAuth protectedRoute={false}>
               <Signup />
@@ -58,7 +63,7 @@ createRoot(document.getElementById("root")).render(
           }
         />
         <Route
-          path="/api/admin"
+          path="/admin"
           element={
             <CheckAuth protectedRoute={true}>
               <Admin />

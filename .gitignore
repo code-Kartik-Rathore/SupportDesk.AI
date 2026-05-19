@@ -42,3 +42,9 @@ ai-ticket-assistant/.env
 ai-ticket-assistant/node_modules
 ai-ticket-frontend/node_modules
 ai-ticket-frontend/.env
+
+# Personal / private files
+INTERVIEW_CHEAT_SHEET.md
+PROJECT_EXPLANATION.md
+RESUME_DESCRIPTION.md
+readme.md
