@@ -6,8 +6,7 @@ import { sendTicketCreatedToUser, sendTicketAssignedToModerator, sendTicketAssig
 import analyzeTicket from "../../utils/ai.js";
 
 export const onTicketCreated = inngest.createFunction(
-  { id: "on-ticket-created", retries: 2 },
-  { event: "ticket/created" },
+  { id: "on-ticket-created", retries: 2, event: "ticket/created" },
   async ({ event, step }) => {
     try {
       const { ticketId } = event.data;

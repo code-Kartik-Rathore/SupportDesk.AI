@@ -24,7 +24,7 @@ app.use("/api/auth", userRoutes);
 app.use("/api/tickets", ticketRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI?.trim())
   .then(() => {
     console.log("MongoDB connected ✅");
     app.listen(PORT, () => console.log("🚀 Server at http://localhost:3000"));
