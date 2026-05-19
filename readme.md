@@ -23,7 +23,8 @@ Clean secure authentication layout featuring dual quick-access demo log-in optio
 
 ### 🎫 AI Ticket Insights & Resolution Form
 Detailed ticket page showcasing required skills identified by the AI, helpful notes generated automatically, and an interactive resolution interface for assigned moderators.
-<img width="2940" height="1658" alt="image" src="https://github.com/user-attachments/assets/135e66f0-c75a-4a09-a2fa-a03a8be63020" />
+<img width="2936" height="1658" alt="image" src="https://github.com/user-attachments/assets/473d91cb-7a6f-4080-8f8b-2e190031526b" />
+
 
 
 ### 🛠️ Admin Control Panel
